@@ -1,0 +1,44 @@
+{
+  "name": "ec-tpl",
+  "version": "0.1.0",
+  "description": "Electron + TypeScript + Vite + React template",
+  "main": "dist/main/main.js",
+  "private": true,
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently -k \"npm:dev:main\" \"npm:dev:renderer\" \"npm:dev:electron\"",
+    "dev:main": "tsc -w -p tsconfig.node.json",
+    "dev:renderer": "vite",
+    "dev:electron": "wait-on dist/main/main.js && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .",
+    "build": "npm run build:main && npm run build:renderer && electron-builder",
+    "build:main": "tsc -p tsconfig.node.json",
+    "build:renderer": "vite build",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "format": "prettier -w \"src/**/*.{ts,tsx,js,jsx,json,css,md}\""
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.38",
+    "@types/react-dom": "^18.2.15",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^32.0.0",
+    "electron-builder": "^24.13.3",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3",
+    "vite": "^5.2.0",
+    "wait-on": "^7.0.1"
+  }
+}
